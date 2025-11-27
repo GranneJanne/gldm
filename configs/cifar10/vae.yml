@@ -1,0 +1,24 @@
+seed: 42
+type: vae
+
+model:
+  in_channels: 3
+  img_size: 32 # CIFAR-10 resolution
+  latent_dim: 128
+  hidden_dims: [64, 128, 256]
+  variational: true
+
+train:
+  batch_size: 128
+  epochs: 30
+  lr: 0.0002
+  kld_weight: 0.0005
+  recon_loss_type: "mse"
+  log_interval: 100
+  checkpoint_dir: "checkpoints"
+  eval_dir: "experiments/vae_eval"
+
+data:
+  root: "./data"
+  num_workers: 4
+  val_fraction: 0.1

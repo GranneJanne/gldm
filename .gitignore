@@ -1,0 +1,7 @@
+.venv
+**/__pycache__/
+checkpoints/
+data/
+experiments/
+dataset/
+results/

@@ -1,0 +1,36 @@
+seed: 42
+type: gldm
+
+model:
+  in_channels: 3
+  img_size: 64 # CelebA size
+  latent_dim: 128
+  hidden_dims: [64, 128, 256, 512]
+  variational: true
+
+diffusion:
+  T: 1000
+  schedule: "linear"
+  beta_start: 0.0001
+  beta_end: 0.02
+  base_channels: 128
+  channel_mults: [1, 2, 4]
+  time_emb_dim: 512
+
+train:
+  batch_size: 64
+  epochs: 2
+  lr: 0.0005 # Adam
+  log_interval: 40
+  checkpoint_dir: "experiments/checkpoints/gldm_celebA"
+  vae_checkpoint: "experiments/checkpoints/vae_celebA/vae_epoch15.pt"
+
+data:
+  root: "./data"
+  dataset: celebA
+  num_workers: 4
+  val_fraction: 0.1
+
+geometry:
+  num_samples: 2 # number of J^T J probes
+  power: 0.5 # soften the weights (square root) instead of clipping
